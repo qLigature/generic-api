@@ -31,6 +31,7 @@ exports.getSomething = async (req, res, next) => {
 exports.createSomething = async (req, res, next) => {
   try {
 
+    console.log(req.body);
     const something = await Something.create(req.body);
 
     res.status(201).send(something);
