@@ -47,7 +47,7 @@ exports.updateSomething = async (req, res, next) => {
     const something = await Something.findById(req.params.id);
     if (!something) return res.status(404).send();
 
-    something.data = req.body.data;
+    something.name = req.body.name;
     await something.save();
     res.status(200).send(something);
 
