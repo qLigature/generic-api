@@ -3,7 +3,10 @@ const app = express();
 require('dotenv').config();
 const cors = require('cors');
 
+const somethingRouter = require('./routes/something');
+
 const PORT = process.env.PORT || 5000;
+const { DB_CONNECTION } = process.env;
 
 // Middleware
 app.use(cors());
@@ -15,9 +18,16 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
+mongoose.connect(DB_CONNECTION, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});  
+
 app.get('/', (req, res) => {
   res.send({ message: 'Hello world!' });
 });
+
+app.use('/something', somethingRouter);
 
 app.listen(PORT, () => {
   console.log(`Listening on http://localhost:${PORT}`);
