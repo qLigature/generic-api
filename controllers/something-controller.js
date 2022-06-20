@@ -5,7 +5,7 @@ exports.getAllSomething = async (req, res, next) => {
   try {
 
     const somethingList = await Something.find();
-    
+
     res.status(200).send(somethingList);
 
   } catch (error) {
@@ -31,7 +31,7 @@ exports.getSomething = async (req, res, next) => {
 exports.createSomething = async (req, res, next) => {
   try {
 
-    const something = await Room.create(req.body);
+    const something = await Something.create(req.body);
 
     res.status(201).send(something);
 
